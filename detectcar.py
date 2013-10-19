@@ -10,19 +10,6 @@ from cv2 import GaussianBlur
 from skimage.morphology import binary_dilation, disk, remove_small_objects, label
 from skimage.measure import regionprops
 
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-
-def showimg(img):
-    viewer = ImageViewer(img)
-    viewer.show()
-    reset_plots()
-
-def show2img(im1,im2):
-    viewer = CollectionViewer([im1, im2])
-    viewer.show()
-    reset_plots()
-
 # load files
 background, current = imread('parking-background.png'), imread('parking-current.png')
 
@@ -50,6 +37,9 @@ props = regionprops(label(filtered),properties=['BoundingBox'])
 viewer = CollectionViewer([background, current, bkg, cur, absdiff, grey, thresholded, dilated, filtered])
 viewer.show()
 reset_plots()
+
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 minr, minc, maxr, maxc = props[0]['BoundingBox']
 
