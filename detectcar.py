@@ -5,10 +5,11 @@ from skimage.io import imshow, show
 from skimage import img_as_float
 from skimage.color import rgb2grey
 from skimage.filter import threshold_otsu
-from reset import reset_plots
 from cv2 import GaussianBlur
 from skimage.morphology import binary_dilation, disk, remove_small_objects, label
 from skimage.measure import regionprops
+from reset import reset_plots
+from draw import boxes
 
 # load files
 background, current = imread('parking-background.png'), imread('parking-current.png')
@@ -38,13 +39,4 @@ viewer = CollectionViewer([background, current, bkg, cur, absdiff, grey, thresho
 viewer.show()
 reset_plots()
 
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
-
-minr, minc, maxr, maxc = props[0]['BoundingBox']
-
-fig, ax = plt.subplots(ncols=1, nrows=1)
-ax.imshow(current)
-ax.add_patch(mpatches.Rectangle((minc, minr), maxc - minc, maxr - minr,
-                              fill=False, edgecolor='red', linewidth=2))
-plt.show()
+boxes(current,[props[0]['BoundingBox']])
