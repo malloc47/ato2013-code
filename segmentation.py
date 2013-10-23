@@ -5,10 +5,10 @@ from skimage.color import rgb2grey
 from skimage.segmentation import slic, quickshift
 from skimage.segmentation import mark_boundaries
 
-im = imread('hancock.png')
+im = imread('grumpy.jpg')
 
-# viewer = ImageViewer(im)
-# viewer.show()
+viewer = ImageViewer(im)
+viewer.show()
 
 # segmented = slic(img_as_ubyte(im),n_segments=100,max_iter=1)
 segmented = quickshift(img_as_ubyte(im),max_dist=15)
