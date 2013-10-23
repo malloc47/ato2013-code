@@ -1,20 +1,18 @@
 from skimage.data import imread
 from skimage.viewer import ImageViewer
 from skimage.color import rgb2grey
+import numpy as np
 
 image = imread('grumpy.jpg')
-viewer = ImageViewer(image)
-viewer.show()
+ImageViewer(image).show()
+
+print(str(image))
 
 # image_grey = imread('grumpy.jpg', as_grey=True)
 image_grey = rgb2grey(image)
-viewer = ImageViewer(image_grey)
-reviewer.show()
+ImageViewer(image_grey).show()
 
-print(str(image))
 print(str(image_grey))
-
-import numpy as np
 
 my_image = np.asarray(
 
@@ -24,5 +22,4 @@ my_image = np.asarray(
 
     dtype='uint8')
 
-viewer = ImageViewer(my_image)
-viewer.show()
+ImageViewer(my_image).show()
