@@ -4,15 +4,14 @@ from skimage import img_as_ubyte
 from skimage.data import lena
 from skimage.color import rgb2grey
 from skimage.viewer import ImageViewer
+import numpy as np
 from draw import boxes
-import matplotlib.pyplot as plt
 
 img = img_as_ubyte(rgb2grey(lena()))
 
 img_grey = cv2.equalizeHist(rgb2grey(img))
 
-viewer = ImageViewer(img_grey)
-plt.show()
+ImageViewer(img_grey).show()
  
 cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml')
 rects = cascade.detectMultiScale(img_grey, scaleFactor=1.1,
@@ -30,8 +29,7 @@ frame = np.asarray(cv.QueryFrame(capture)[:,:]).copy()
 frame_grey = img_as_ubyte(rgb2grey(frame))
 del(capture)
 
-viewer = ImageViewer(frame)
-plt.show()
+ImageViewer(frame).show()
 
 rects = cascade.detectMultiScale(frame_grey, scaleFactor=1.1,
                                  minNeighbors=3,
