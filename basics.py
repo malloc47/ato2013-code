@@ -1,3 +1,5 @@
+import sys
+sys.tracebacklimit = 0
 from skimage.data import imread
 from skimage.viewer import ImageViewer
 from skimage.color import rgb2grey
@@ -26,5 +28,15 @@ my_image = np.asarray(
      [255,  0  ,  255]], 
 
     dtype='uint8')
+
+ImageViewer(my_image).show()
+
+my_image = np.logical_and(
+    my_image,
+    np.asarray(
+        [[255,  0  ,  0],
+         [0  ,  0  ,  0  ],
+         [0  ,  0  ,  255]], 
+    dtype='uint8'))
 
 ImageViewer(my_image).show()
